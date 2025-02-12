@@ -1,22 +1,35 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+const { title } = Astro.props;
+const isHome = title === "Benvingut";
+---
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title} - Ferran Espasa</title>
+  <link rel="stylesheet" href="/styles/global.css">
+</head>
+<body>
+
+  { !isHome && (
+    <nav class="main-nav">
+      <ul>
+        <li><a href="/">Inici</a></li>
+        <li><a href="/cv">Currículum</a></li>
+        <li><a href="/voleibol">Voleibol</a></li>
+      </ul>
+    </nav>
+  )}
+
+  <main>
+    <slot />
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Ferran Espasa Galceran</p>
+  </footer>
+
+</body>
+</html>
